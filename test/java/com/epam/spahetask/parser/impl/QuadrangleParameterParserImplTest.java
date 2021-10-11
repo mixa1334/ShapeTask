@@ -2,6 +2,7 @@ package com.epam.spahetask.parser.impl;
 
 import com.epam.spahetask.entity.point.CustomPoint;
 import com.epam.spahetask.exception.ShapeException;
+import com.epam.spahetask.factory.PointFactory;
 import com.epam.spahetask.parser.QuadrangleParameterParser;
 import org.testng.annotations.Test;
 
@@ -15,8 +16,10 @@ public class QuadrangleParameterParserImplTest {
     public void testParseParametersPositiveOutcome() throws ShapeException {
         QuadrangleParameterParser parser = new QuadrangleParameterParserImpl();
         String input = "   1,2    -5,2  2,3  9,-6  ";  //," 1,2    -5,2  2,3  9,-6  -5,4");
-        List<CustomPoint> expected = List.of(new CustomPoint(1,2), new CustomPoint(-5,2),
-                                                new CustomPoint(2,3), new CustomPoint(9,-6));
+        List<CustomPoint> expected = List.of(PointFactory.createPoint(1,2),
+                                                PointFactory.createPoint(-5,2),
+                                                PointFactory.createPoint(2,3),
+                                                PointFactory.createPoint(9,-6));
 
         List<CustomPoint> actual = parser.parseParameters(input);
 

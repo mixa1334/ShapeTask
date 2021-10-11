@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class QuadrangleParameterValidator {
+public final class QuadrangleParameterValidator {
     final static Logger logger = LogManager.getLogger();
     public final static String PARAMETERS_REGEX = "\\s*(-?\\d{1,5},-?\\d{1,5}\\s+){3}-?\\d{1,5},-?\\d{1,5}\\s*";
 

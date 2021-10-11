@@ -1,30 +1,22 @@
 package com.epam.spahetask.entity.point;
 
-public class CustomPoint {
-    private double x;
-    private double y;
+public class CustomPoint{
+    private int x;
+    private int y;
 
-    public CustomPoint() {
-    }
-
-    public CustomPoint(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
     }
 
@@ -32,8 +24,8 @@ public class CustomPoint {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + Double.hashCode(x);
-        result = prime * result + Double.hashCode(y);
+        result = prime * result + Integer.hashCode(x);
+        result = prime * result + Integer.hashCode(y);
         return result;
     }
 
@@ -53,7 +45,9 @@ public class CustomPoint {
     @Override
     public String toString() {
         StringBuilder message = new StringBuilder();
-        message.append("[X = ").append(x).append(", Y = ").append(y).append("]");
+        message.append("[X=").append(x).append(",Y=").append(y).append("]");
         return message.toString();
     }
+
+
 }

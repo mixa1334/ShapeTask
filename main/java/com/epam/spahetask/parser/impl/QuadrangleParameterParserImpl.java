@@ -2,6 +2,7 @@ package com.epam.spahetask.parser.impl;
 
 import com.epam.spahetask.entity.point.CustomPoint;
 import com.epam.spahetask.exception.ShapeException;
+import com.epam.spahetask.factory.PointFactory;
 import com.epam.spahetask.parser.QuadrangleParameterParser;
 import com.epam.spahetask.validator.QuadrangleParameterValidator;
 
@@ -24,7 +25,7 @@ public class QuadrangleParameterParserImpl implements QuadrangleParameterParser 
             String[] values = stringPoint.split(VALUE_DELIMITER);
             int x = Integer.parseInt(values[0]);
             int y = Integer.parseInt(values[1]);
-            result.add(new CustomPoint(x, y));
+            result.add(PointFactory.createPoint(x, y));
         }
 
         return result;

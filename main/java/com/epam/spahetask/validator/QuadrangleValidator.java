@@ -5,28 +5,34 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
+import java.util.List;
 
 public final class QuadrangleValidator {
     final static Logger logger = LogManager.getLogger();
 
-    public static boolean isQuadrangle(CustomPoint... point) {
-        if (point.length != 4) {
-            logger.log(Level.INFO, Arrays.toString(point) + " is not quadrangle");
-            return false;
-        }
-        if (point[0] == null || point[1] == null || point[2] == null || point[3] == null) {
-            logger.log(Level.INFO, Arrays.toString(point) + " is not quadrangle");
+    public static boolean isQuadrangle(List<CustomPoint> points) {
+        if (points == null || points.size() != 4) {
+            logger.log(Level.INFO, points + " is not quadrangle");
             return false;
         }
 
-        boolean firstTrio = isLine(point[0], point[1], point[2]);
-        boolean secondTrio = isLine(point[0], point[1], point[3]);
-        boolean thirdTrio = isLine(point[0], point[2], point[3]);
-        boolean fourthTrio = isLine(point[1], point[2], point[3]);
+        CustomPoint point1 = points.get(0);
+        CustomPoint point2 = points.get(1);
+        CustomPoint point3 = points.get(2);
+        CustomPoint point4 = points.get(3);
+
+        if (point1 == null || point2 == null || point3 == null || point4 == null) {
+            logger.log(Level.INFO, points + " is not quadrangle");
+            return false;
+        }
+
+        boolean firstTrio = isLine(point1, point2, point3);
+        boolean secondTrio = isLine(point1, point2, point4);
+        boolean thirdTrio = isLine(point1, point3, point4);
+        boolean fourthTrio = isLine(point2, point3, point4);
 
         boolean result = !(firstTrio || secondTrio || thirdTrio || fourthTrio);
-        logger.log(Level.INFO, Arrays.toString(point) + " isQuadrangle?: " + result);
+        logger.log(Level.INFO, points + " isQuadrangle?: " + result);
         return result;
     }
 

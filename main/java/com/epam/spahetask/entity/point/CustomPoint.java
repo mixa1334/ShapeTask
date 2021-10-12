@@ -48,6 +48,4 @@ public class CustomPoint{
         message.append("[X=").append(x).append(",Y=").append(y).append("]");
         return message.toString();
     }
-
-
 }

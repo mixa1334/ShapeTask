@@ -4,6 +4,8 @@ import com.epam.spahetask.entity.point.CustomPoint;
 import com.epam.spahetask.entity.polygon.Polygon;
 import com.epam.spahetask.exception.ShapeException;
 
+import java.util.List;
+
 public interface PolygonFactory {
-    Polygon createPolygon(CustomPoint ... points) throws ShapeException;
+    Polygon createPolygon(List<CustomPoint> points) throws ShapeException;
 }

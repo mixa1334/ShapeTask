@@ -4,6 +4,8 @@ import com.epam.spahetask.entity.point.CustomPoint;
 import com.epam.spahetask.factory.PointFactory;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static org.testng.Assert.*;
 
 public class QuadrangleValidatorTest {
@@ -15,7 +17,9 @@ public class QuadrangleValidatorTest {
         CustomPoint point3 = PointFactory.createPoint(9,4);
         CustomPoint point4 = PointFactory.createPoint(8,1);
 
-        boolean actual = QuadrangleValidator.isQuadrangle(point1, point2, point3, point4);
+        List<CustomPoint> input = List.of(point1, point2, point3, point4);
+
+        boolean actual = QuadrangleValidator.isQuadrangle(input);
 
         assertTrue(actual);
     }
@@ -27,7 +31,9 @@ public class QuadrangleValidatorTest {
         CustomPoint point3 = PointFactory.createPoint(9,4);
         CustomPoint point4 = PointFactory.createPoint(11,2);
 
-        boolean actual = QuadrangleValidator.isQuadrangle(point1, point2, point3, point4);
+        List<CustomPoint> input = List.of(point1, point2, point3, point4);
+
+        boolean actual = QuadrangleValidator.isQuadrangle(input);
 
         assertFalse(actual);
     }

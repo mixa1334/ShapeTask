@@ -5,7 +5,7 @@ import com.epam.spahetask.entity.polygon.Polygon;
 import java.util.Optional;
 
 public interface PolygonCharacteristicCalculator {
-    Optional<Long> calculateArea(Polygon polygon);
+    Optional<Double> calculateArea(Polygon polygon);
 
-    Optional<Long> calculatePerimeter(Polygon polygon);
+    Optional<Double> calculatePerimeter(Polygon polygon);
 }

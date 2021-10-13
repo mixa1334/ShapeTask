@@ -39,6 +39,7 @@ public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristi
         double temp;
         CustomPoint pointX;
         CustomPoint pointY;
+
         for (int i = 0; i < n; i++) {
             if (part == 1) {
                 pointX = pointList.get(i);
@@ -47,10 +48,8 @@ public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristi
                 pointX = pointList.get(i + 1);
                 pointY = pointList.get(i);
             }
-            logger.log(Level.DEBUG, "pointX " + pointX + ", pointY " + pointY);
             temp = pointX.getX() * pointY.getY();
             result += temp;
-            logger.log(Level.DEBUG, "mult of point X and Y" + temp);
         }
         if (part == 1) {
             pointX = pointList.get(n);
@@ -59,11 +58,11 @@ public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristi
             pointX = pointList.get(0);
             pointY = pointList.get(n);
         }
-        logger.log(Level.DEBUG, "pointX " + pointX + ", pointY " + pointY);
         temp = pointX.getX() * pointY.getY();
         result += temp;
-        logger.log(Level.DEBUG, "mult of point X and Y: " + temp);
-        logger.log(Level.DEBUG, "area1 - " + result);
+
+        logger.log(Level.DEBUG, "part of area - " + result);
+
         return result;
     }
 
@@ -80,7 +79,6 @@ public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristi
         CustomPoint pointTwo;
 
         double result = 0;
-
         int n = pointList.size() - 1;
 
         for (int i = 0; i < n; i++) {
@@ -88,7 +86,6 @@ public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristi
             pointTwo = pointList.get(i + 1);
             result += calculateLineBtwTwoPoints(pointOne, pointTwo);
         }
-
         pointOne = pointList.get(n);
         pointTwo = pointList.get(0);
         result += calculateLineBtwTwoPoints(pointOne, pointTwo);

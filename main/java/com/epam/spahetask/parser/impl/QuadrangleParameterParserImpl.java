@@ -20,12 +20,13 @@ public class QuadrangleParameterParserImpl implements QuadrangleParameterParser 
         }
 
         List<CustomPoint> result = new LinkedList<>();
+        PointFactory factory = new PointFactory();
 
         for (String stringPoint : parameterString.strip().split(POINT_DELIMITER)) {
             String[] values = stringPoint.split(VALUE_DELIMITER);
             int x = Integer.parseInt(values[0]);
             int y = Integer.parseInt(values[1]);
-            result.add(PointFactory.createPoint(x, y));
+            result.add(factory.createPoint(x, y));
         }
 
         return result;

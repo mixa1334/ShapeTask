@@ -1,6 +1,6 @@
 package com.epam.spahetask.parser.impl;
 
-import com.epam.spahetask.entity.point.CustomPoint;
+import com.epam.spahetask.entity.CustomPoint;
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
 import com.epam.spahetask.parser.QuadrangleParameterParser;

@@ -1,15 +1,14 @@
-package com.epam.spahetask.entity.polygon.quadrangle;
+package com.epam.spahetask.entity;
 
-import com.epam.spahetask.entity.point.CustomPoint;
-import com.epam.spahetask.entity.polygon.Polygon;
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
 import com.epam.spahetask.idgenerator.IdGenerator;
-import com.epam.spahetask.validator.QuadrangleValidator;
+import com.epam.spahetask.service.QuadrangleTypeChecker;
+import com.epam.spahetask.service.impl.QuadrangleTypeCheckerImpl;
 
 import java.util.List;
 
-public class Quadrangle implements Polygon {
+public class Quadrangle {
     private List<CustomPoint> customPoints;
     private final long quadrangleId;
     private final PointFactory factory;
@@ -24,21 +23,19 @@ public class Quadrangle implements Polygon {
         customPoints = List.of(point1, point2, point3, point4);
     }
 
-    @Override
-    public List<CustomPoint> getPoints() {
+    public List<CustomPoint> getAllPoints() {
         return factory.copyPoints(customPoints);
     }
 
-    @Override
     public void setPoints(List<CustomPoint> points) throws ShapeException {
-        if (!QuadrangleValidator.isQuadrangle(points)) {
+        QuadrangleTypeChecker quadrangleTypeChecker = QuadrangleTypeCheckerImpl.getInstance();
+        if (!quadrangleTypeChecker.isQuadrangle(points)) {
             throw new ShapeException("invalid data - " + points);
         }
 
         customPoints = factory.copyPoints(points);
     }
 
-    @Override
     public long getPolygonId() {
         return quadrangleId;
     }

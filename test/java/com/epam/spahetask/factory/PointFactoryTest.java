@@ -1,6 +1,6 @@
 package com.epam.spahetask.factory;
 
-import com.epam.spahetask.entity.point.CustomPoint;
+import com.epam.spahetask.entity.CustomPoint;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;

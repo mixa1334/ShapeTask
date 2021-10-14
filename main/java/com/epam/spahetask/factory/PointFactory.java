@@ -1,11 +1,12 @@
 package com.epam.spahetask.factory;
 
-import com.epam.spahetask.entity.point.CustomPoint;
+import com.epam.spahetask.entity.CustomPoint;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public final class PointFactory {
+
     public CustomPoint createPoint(int x, int y) {
         CustomPoint point = new CustomPoint();
         point.setX(x);

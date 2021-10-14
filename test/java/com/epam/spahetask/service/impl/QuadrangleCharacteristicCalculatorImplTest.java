@@ -1,12 +1,11 @@
 package com.epam.spahetask.service.impl;
 
-import com.epam.spahetask.entity.point.CustomPoint;
-import com.epam.spahetask.entity.polygon.Polygon;
+import com.epam.spahetask.entity.CustomPoint;
+import com.epam.spahetask.entity.Quadrangle;
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
-import com.epam.spahetask.factory.PolygonFactory;
-import com.epam.spahetask.factory.quadranglefactory.QuadrangleFactory;
-import com.epam.spahetask.service.PolygonCharacteristicCalculator;
+import com.epam.spahetask.factory.QuadrangleFactory;
+import com.epam.spahetask.service.QuadrangleCharacteristicCalculator;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -15,15 +14,15 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-public class PolygonCharacteristicCalculatorImplTest {
-    PolygonCharacteristicCalculator polygonCharacteristicCalculator;
+public class QuadrangleCharacteristicCalculatorImplTest {
+    QuadrangleCharacteristicCalculator polygonCharacteristicCalculator;
     PointFactory pointFactory;
-    PolygonFactory polygonFactory;
-    Polygon quadrangle;
+    QuadrangleFactory polygonFactory;
+    Quadrangle quadrangle;
 
     @BeforeClass
     public void setUp() throws ShapeException {
-        polygonCharacteristicCalculator = new PolygonCharacteristicCalculatorImpl();
+        polygonCharacteristicCalculator = new QuadrangleCharacteristicCalculatorImpl();
         pointFactory = new PointFactory();
         polygonFactory = new QuadrangleFactory();
         List<CustomPoint> points = new ArrayList<>(4);
@@ -32,7 +31,7 @@ public class PolygonCharacteristicCalculatorImplTest {
         points.add(pointFactory.createPoint(-1, 3));
         points.add(pointFactory.createPoint(1, 5));
 
-        quadrangle = polygonFactory.createPolygon(points);
+        quadrangle = polygonFactory.createQuadrangle(points);
     }
 
     @Test

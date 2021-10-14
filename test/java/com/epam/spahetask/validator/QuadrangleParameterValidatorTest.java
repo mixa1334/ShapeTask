@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class ShapeParameterValidatorTest {
+public class QuadrangleParameterValidatorTest {
 
     @Test
     public void testIsValidPositiveOutcome() {

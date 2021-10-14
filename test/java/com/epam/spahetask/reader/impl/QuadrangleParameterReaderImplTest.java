@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-public class ShapeParameterReaderImplTest {
+public class QuadrangleParameterReaderImplTest {
 
     @Test
     public void testRead() throws ShapeException {

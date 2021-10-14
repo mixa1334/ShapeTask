@@ -1,4 +1,4 @@
-package com.epam.spahetask.entity.point;
+package com.epam.spahetask.entity;
 
 public class CustomPoint{
     private int x;

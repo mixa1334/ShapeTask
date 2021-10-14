@@ -1,6 +1,6 @@
 package com.epam.spahetask.parser;
 
-import com.epam.spahetask.entity.point.CustomPoint;
+import com.epam.spahetask.entity.CustomPoint;
 import com.epam.spahetask.exception.ShapeException;
 
 import java.util.List;

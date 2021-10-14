@@ -42,4 +42,29 @@ public class Quadrangle implements Polygon {
     public long getPolygonId() {
         return quadrangleId;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Quadrangle quadrangle = (Quadrangle) obj;
+        return quadrangle.quadrangleId == this.quadrangleId && quadrangle.customPoints == this.customPoints;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder message = new StringBuilder();
+        message.append("[points=").append(customPoints).append(", quadrangleId=").append(quadrangleId).append("]");
+        return message.toString();
+    }
 }

@@ -20,7 +20,7 @@ public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristi
 
         List<CustomPoint> pointList = polygon.getPoints();
 
-        
+
     }
 
     @Override

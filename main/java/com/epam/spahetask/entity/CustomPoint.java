@@ -1,6 +1,6 @@
 package com.epam.spahetask.entity;
 
-public class CustomPoint{
+public class CustomPoint {
     private int x;
     private int y;
 
@@ -22,11 +22,7 @@ public class CustomPoint{
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + Integer.hashCode(x);
-        result = prime * result + Integer.hashCode(y);
-        return result;
+        return Integer.hashCode(x) + Integer.hashCode(y);
     }
 
     @Override

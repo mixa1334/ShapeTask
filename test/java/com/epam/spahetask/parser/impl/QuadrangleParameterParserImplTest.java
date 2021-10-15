@@ -18,7 +18,7 @@ public class QuadrangleParameterParserImplTest {
 
     @BeforeClass
     public void setUp() {
-        factory = new PointFactory();
+        factory = PointFactory.getInstance();
         parser = new QuadrangleParameterParserImpl(QuadrangleParameterValidator.getInstance());
     }
 

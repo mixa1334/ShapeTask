@@ -5,7 +5,8 @@ import com.epam.spahetask.entity.CustomPoint;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class PointFactory {
+public enum PointFactory {
+    INSTANCE;
 
     public CustomPoint createPoint(int x, int y) {
         CustomPoint point = new CustomPoint();

@@ -11,6 +11,14 @@ import com.epam.spahetask.service.impl.QuadrangleTypeCheckerImpl;
 import java.util.List;
 
 public class QuadrangleFactory implements PolygonFactory {
+    private static QuadrangleFactory instance = new QuadrangleFactory();
+
+    private QuadrangleFactory() {
+    }
+
+    public static QuadrangleFactory getInstance() {
+        return instance;
+    }
 
     @Override
     public Polygon createPolygon(Polygon polygon) throws ShapeException {
@@ -19,7 +27,7 @@ public class QuadrangleFactory implements PolygonFactory {
 
     @Override
     public Polygon createPolygon(List<CustomPoint> points) throws ShapeException {
-        QuadrangleTypeChecker quadrangleTypeChecker = new QuadrangleTypeCheckerImpl();
+        QuadrangleTypeChecker quadrangleTypeChecker = QuadrangleTypeCheckerImpl.getInstance();
         if (!quadrangleTypeChecker.isQuadrangle(points)) {
             throw new ShapeException(points + " is not quadrangle");
         }

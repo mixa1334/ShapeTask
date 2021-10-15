@@ -2,12 +2,11 @@ package com.epam.spahetask.service;
 
 import com.epam.spahetask.entity.CustomPoint;
 
-public final class CustomMath {
-    private CustomMath() {
-    }
+public enum CustomMath {
+    INSTANCE;
 
-    public static boolean areLines(CustomPoint startFirstLine, CustomPoint endFirstLine,
-                                   CustomPoint startSecondLine, CustomPoint endSecondLine, LinesType type) {
+    public boolean areLinesParallelOrPerpendicular(CustomPoint startFirstLine, CustomPoint endFirstLine,
+                                                   CustomPoint startSecondLine, CustomPoint endSecondLine, LinesType type) {
         boolean result;
 
         boolean firstLineVertical = isLineVertical(startFirstLine, endFirstLine);
@@ -28,29 +27,29 @@ public final class CustomMath {
         return result;
     }
 
-    public static boolean isLineVertical(CustomPoint startLine, CustomPoint endLine) {
+    public boolean isLineVertical(CustomPoint startLine, CustomPoint endLine) {
         return 0 == startLine.getX() - endLine.getX();
     }
 
-    public static boolean isLineHorizontal(CustomPoint startLine, CustomPoint endLine) {
+    public boolean isLineHorizontal(CustomPoint startLine, CustomPoint endLine) {
         return 0 == startLine.getY() - endLine.getY();
     }
 
-    public static double calculateLineBtwTwoPoints(CustomPoint point1, CustomPoint point2) {
+    public double calculateLineBtwTwoPoints(CustomPoint point1, CustomPoint point2) {
         double dx = point2.getX() - point1.getX();
         double dy = point2.getY() - point1.getY();
 
         return Math.hypot(dx, dy);
     }
 
-    public static double calculateSlope(CustomPoint point1, CustomPoint point2) {
+    public double calculateSlope(CustomPoint point1, CustomPoint point2) {
         double dy = point2.getY() - point1.getY();
         double dx = point2.getX() - point1.getX();
 
         return dy / dx;
     }
 
-    public static double calculateAngel(CustomPoint point1, CustomPoint point2, CustomPoint point3) {
+    public double calculateAngel(CustomPoint point1, CustomPoint point2, CustomPoint point3) {
         int P1Y = point2.getY();
         int P2Y = point1.getY();
         int P3Y = point3.getY();

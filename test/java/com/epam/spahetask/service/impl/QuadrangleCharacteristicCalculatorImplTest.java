@@ -22,9 +22,9 @@ public class QuadrangleCharacteristicCalculatorImplTest {
 
     @BeforeClass
     public void setUp() throws ShapeException {
-        polygonCharacteristicCalculator = new PolygonCharacteristicCalculatorImpl(new QuadrangleTypeCheckerImpl());
-        pointFactory = new PointFactory();
-        polygonFactory = new QuadrangleFactory();
+        polygonCharacteristicCalculator = new PolygonCharacteristicCalculatorImpl(QuadrangleTypeCheckerImpl.getInstance());
+        pointFactory = PointFactory.getInstance();
+        polygonFactory = QuadrangleFactory.getInstance();
         List<CustomPoint> points = new ArrayList<>(4);
         points.add(pointFactory.createPoint(4, -1));
         points.add(pointFactory.createPoint(-2, -3));

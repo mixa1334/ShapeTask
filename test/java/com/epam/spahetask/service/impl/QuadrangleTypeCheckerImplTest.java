@@ -23,9 +23,9 @@ public class QuadrangleTypeCheckerImplTest {
 
     @BeforeClass
     public void init() {
-        pointFactory = new PointFactory();
-        quadrangleFactory = new QuadrangleFactory();
-        polygonTypeChecker = new QuadrangleTypeCheckerImpl();
+        pointFactory = PointFactory.getInstance();
+        quadrangleFactory = QuadrangleFactory.getInstance();
+        polygonTypeChecker = QuadrangleTypeCheckerImpl.getInstance();
         points = new ArrayList<>(4);
     }
 

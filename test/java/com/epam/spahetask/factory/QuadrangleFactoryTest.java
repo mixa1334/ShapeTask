@@ -19,8 +19,8 @@ public class QuadrangleFactoryTest {
 
     @BeforeClass
     public void setUp() {
-        pointFactory = new PointFactory();
-        quadrangleFactory = new QuadrangleFactory();
+        pointFactory = PointFactory.getInstance();
+        quadrangleFactory = QuadrangleFactory.getInstance();
     }
 
     @Test

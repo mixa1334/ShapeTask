@@ -89,11 +89,11 @@ public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristi
         for (int i = 0; i < n; i++) {
             pointOne = pointList.get(i);
             pointTwo = pointList.get(i + 1);
-            result += CustomMath.calculateLineBtwTwoPoints(pointOne, pointTwo);
+            result += CustomMath.INSTANCE.calculateLineBtwTwoPoints(pointOne, pointTwo);
         }
         pointOne = pointList.get(n);
         pointTwo = pointList.get(0);
-        result += CustomMath.calculateLineBtwTwoPoints(pointOne, pointTwo);
+        result += CustomMath.INSTANCE.calculateLineBtwTwoPoints(pointOne, pointTwo);
 
         logger.log(Level.INFO, "perimeter - " + result);
 

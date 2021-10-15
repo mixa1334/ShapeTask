@@ -25,7 +25,7 @@ public class QuadrangleParameterParserImpl implements PolygonParameterParser {
         }
 
         List<CustomPoint> result = new LinkedList<>();
-        PointFactory factory = new PointFactory();
+        PointFactory factory = PointFactory.INSTANCE;
 
         for (String stringPoint : parameterString.strip().split(POINT_DELIMITER)) {
             String[] values = stringPoint.split(VALUE_DELIMITER);

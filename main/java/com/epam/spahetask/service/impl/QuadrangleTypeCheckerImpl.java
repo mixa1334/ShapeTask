@@ -14,10 +14,19 @@ import java.util.List;
 
 public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker, PolygonTypeChecker {
     final static Logger logger = LogManager.getLogger();
+    private static QuadrangleTypeCheckerImpl instance = new QuadrangleTypeCheckerImpl();
     private CustomPoint point1;
     private CustomPoint point2;
     private CustomPoint point3;
     private CustomPoint point4;
+    private final CustomMath customMath = CustomMath.INSTANCE;
+
+    private QuadrangleTypeCheckerImpl() {
+    }
+
+    public static QuadrangleTypeCheckerImpl getInstance() {
+        return instance;
+    }
 
     @Override
     public boolean isQuadrangle(List<CustomPoint> pointList) {
@@ -31,10 +40,10 @@ public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker, Polygon
         CustomPoint point3 = pointList.get(2);
         CustomPoint point4 = pointList.get(3);
 
-        boolean firstTrio = CustomMath.calculateAngel(point1, point2, point3) == 0;
-        boolean secondTrio = CustomMath.calculateAngel(point1, point2, point4) == 0;
-        boolean thirdTrio = CustomMath.calculateAngel(point1, point3, point4) == 0;
-        boolean fourthTrio = CustomMath.calculateAngel(point2, point3, point4) == 0;
+        boolean firstTrio = customMath.calculateAngel(point1, point2, point3) == 0;
+        boolean secondTrio = customMath.calculateAngel(point1, point2, point4) == 0;
+        boolean thirdTrio = customMath.calculateAngel(point1, point3, point4) == 0;
+        boolean fourthTrio = customMath.calculateAngel(point2, point3, point4) == 0;
         boolean result = !(firstTrio || secondTrio || thirdTrio || fourthTrio);
 
         logger.log(Level.INFO, pointList + " isQuadrangle?: " + result);
@@ -83,8 +92,8 @@ public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker, Polygon
             return false;
         }
 
-        boolean firstPair = CustomMath.areLines(point1, point2, point3, point4, CustomMath.LinesType.PARALLEL);
-        boolean secondPair = CustomMath.areLines(point2, point3, point1, point4, CustomMath.LinesType.PARALLEL);
+        boolean firstPair = customMath.areLinesParallelOrPerpendicular(point1, point2, point3, point4, CustomMath.LinesType.PARALLEL);
+        boolean secondPair = customMath.areLinesParallelOrPerpendicular(point2, point3, point1, point4, CustomMath.LinesType.PARALLEL);
         boolean result = firstPair || secondPair;
 
         logger.log(Level.INFO, quadrangle + " is trapezoid?: " + result);
@@ -98,8 +107,8 @@ public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker, Polygon
             return false;
         }
 
-        boolean firstPair = CustomMath.areLines(point1, point2, point3, point4, CustomMath.LinesType.PARALLEL);
-        boolean secondPair = CustomMath.areLines(point2, point3, point1, point4, CustomMath.LinesType.PARALLEL);
+        boolean firstPair = customMath.areLinesParallelOrPerpendicular(point1, point2, point3, point4, CustomMath.LinesType.PARALLEL);
+        boolean secondPair = customMath.areLinesParallelOrPerpendicular(point2, point3, point1, point4, CustomMath.LinesType.PARALLEL);
         boolean result = firstPair && secondPair;
 
         logger.log(Level.INFO, quadrangle + " is parallelogram?: " + result);
@@ -113,7 +122,7 @@ public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker, Polygon
             return false;
         }
 
-        double angle = CustomMath.calculateAngel(point1, point2, point3);
+        double angle = customMath.calculateAngel(point1, point2, point3);
         double angle90 = 90;
         boolean result = angle == angle90;
 
@@ -128,8 +137,8 @@ public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker, Polygon
             return false;
         }
 
-        double firstSideLength = CustomMath.calculateLineBtwTwoPoints(point1, point2);
-        double secondSideLength = CustomMath.calculateLineBtwTwoPoints(point2, point3);
+        double firstSideLength = customMath.calculateLineBtwTwoPoints(point1, point2);
+        double secondSideLength = customMath.calculateLineBtwTwoPoints(point2, point3);
         boolean result = firstSideLength == secondSideLength;
 
         logger.log(Level.INFO, quadrangle + " is rhombus?: " + result);

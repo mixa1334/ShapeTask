@@ -1,8 +1,10 @@
 package com.epam.spahetask.factory;
 
 import com.epam.spahetask.entity.CustomPoint;
-import com.epam.spahetask.entity.Quadrangle;
+import com.epam.spahetask.entity.polygon.Polygon;
+import com.epam.spahetask.entity.polygon.quadrangle.Quadrangle;
 import com.epam.spahetask.exception.ShapeException;
+import com.epam.spahetask.factory.impl.QuadrangleFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -13,7 +15,7 @@ import static org.testng.Assert.*;
 
 public class QuadrangleFactoryTest {
     PointFactory pointFactory;
-    QuadrangleFactory quadrangleFactory;
+    PolygonFactory quadrangleFactory;
 
     @BeforeClass
     public void setUp() {
@@ -29,7 +31,7 @@ public class QuadrangleFactoryTest {
         pointList.add(pointFactory.createPoint(7, 5));
         pointList.add(pointFactory.createPoint(10, 1));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(pointList);
+        Polygon quadrangle = quadrangleFactory.createPolygon(pointList);
 
         assertEquals(quadrangle.getAllPoints(), pointList);
     }
@@ -40,7 +42,7 @@ public class QuadrangleFactoryTest {
         pointList.add(pointFactory.createPoint(4, 1));
         pointList.add(pointFactory.createPoint(5, 4));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(pointList);
+        Polygon quadrangle = quadrangleFactory.createPolygon(pointList);
 
     }
 
@@ -52,8 +54,8 @@ public class QuadrangleFactoryTest {
         pointList.add(pointFactory.createPoint(7, 5));
         pointList.add(pointFactory.createPoint(10, 1));
 
-        Quadrangle expected = quadrangleFactory.createQuadrangle(pointList);
-        Quadrangle actual = quadrangleFactory.createQuadrangle(expected);
+        Polygon expected = quadrangleFactory.createPolygon(pointList);
+        Polygon actual = quadrangleFactory.createPolygon(expected);
 
         assertNotEquals(actual, expected);
     }

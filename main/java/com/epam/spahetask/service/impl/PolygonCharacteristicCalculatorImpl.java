@@ -1,10 +1,10 @@
 package com.epam.spahetask.service.impl;
 
 import com.epam.spahetask.entity.CustomPoint;
-import com.epam.spahetask.entity.Quadrangle;
+import com.epam.spahetask.entity.polygon.Polygon;
 import com.epam.spahetask.service.CustomMath;
-import com.epam.spahetask.service.QuadrangleCharacteristicCalculator;
-import com.epam.spahetask.service.QuadrangleTypeChecker;
+import com.epam.spahetask.service.PolygonCharacteristicCalculator;
+import com.epam.spahetask.service.PolygonTypeChecker;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,18 +13,22 @@ import java.util.List;
 import java.util.Optional;
 
 //todo refactoring
-public class QuadrangleCharacteristicCalculatorImpl implements QuadrangleCharacteristicCalculator {
+public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristicCalculator {
     final static Logger logger = LogManager.getLogger();
-    private final QuadrangleTypeChecker checker = QuadrangleTypeCheckerImpl.getInstance();
+    private final PolygonTypeChecker checker;
+
+    public PolygonCharacteristicCalculatorImpl(PolygonTypeChecker checker) {
+        this.checker = checker;
+    }
 
     @Override
-    public Optional<Double> calculateArea(Quadrangle quadrangle) {
-        if (!checker.isConvex(quadrangle)) {
+    public Optional<Double> calculateArea(Polygon polygon) {
+        if (!checker.isConvex(polygon)) {
             logger.log(Level.INFO, "it is not convex polygon!");
             return Optional.empty();
         }
 
-        List<CustomPoint> pointList = quadrangle.getAllPoints();
+        List<CustomPoint> pointList = polygon.getAllPoints();
 
         double result = Math.abs(calculatePartOfArea(pointList, 1) - calculatePartOfArea(pointList, 2));
         result /= 2;
@@ -68,13 +72,13 @@ public class QuadrangleCharacteristicCalculatorImpl implements QuadrangleCharact
     }
 
     @Override
-    public Optional<Double> calculatePerimeter(Quadrangle quadrangle) {
-        if (!checker.isConvex(quadrangle)) {
+    public Optional<Double> calculatePerimeter(Polygon polygon) {
+        if (!checker.isConvex(polygon)) {
             logger.log(Level.INFO, "it is not convex polygon!");
             return Optional.empty();
         }
 
-        List<CustomPoint> pointList = quadrangle.getAllPoints();
+        List<CustomPoint> pointList = polygon.getAllPoints();
 
         CustomPoint pointOne;
         CustomPoint pointTwo;

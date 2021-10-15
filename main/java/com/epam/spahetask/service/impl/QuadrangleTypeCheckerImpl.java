@@ -1,8 +1,10 @@
 package com.epam.spahetask.service.impl;
 
 import com.epam.spahetask.entity.CustomPoint;
-import com.epam.spahetask.entity.Quadrangle;
+import com.epam.spahetask.entity.polygon.Polygon;
+import com.epam.spahetask.entity.polygon.quadrangle.Quadrangle;
 import com.epam.spahetask.service.CustomMath;
+import com.epam.spahetask.service.PolygonTypeChecker;
 import com.epam.spahetask.service.QuadrangleTypeChecker;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -10,20 +12,12 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker {
+public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker, PolygonTypeChecker {
     final static Logger logger = LogManager.getLogger();
-    private static QuadrangleTypeCheckerImpl instance = new QuadrangleTypeCheckerImpl();
     private CustomPoint point1;
     private CustomPoint point2;
     private CustomPoint point3;
     private CustomPoint point4;
-
-    private QuadrangleTypeCheckerImpl() {
-    }
-
-    public static QuadrangleTypeCheckerImpl getInstance() {
-        return instance;
-    }
 
     @Override
     public boolean isQuadrangle(List<CustomPoint> pointList) {
@@ -48,7 +42,7 @@ public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker {
     }
 
     @Override
-    public boolean isConvex(Quadrangle quadrangle) {
+    public boolean isConvex(Polygon quadrangle) {
         List<CustomPoint> points = quadrangle.getAllPoints();
 
         point1 = points.get(0);

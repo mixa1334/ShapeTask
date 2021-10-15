@@ -4,6 +4,6 @@ import com.epam.spahetask.exception.ShapeException;
 
 import java.util.List;
 
-public interface QuadrangleParameterReader {
+public interface PolygonParameterReader {
     List<String> read(String filePath) throws ShapeException;
 }

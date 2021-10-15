@@ -1,10 +1,10 @@
 package com.epam.spahetask.service.impl;
 
 import com.epam.spahetask.entity.CustomPoint;
-import com.epam.spahetask.entity.Quadrangle;
+import com.epam.spahetask.entity.polygon.quadrangle.Quadrangle;
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
-import com.epam.spahetask.factory.QuadrangleFactory;
+import com.epam.spahetask.factory.impl.QuadrangleFactory;
 import com.epam.spahetask.service.QuadrangleTypeChecker;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -18,14 +18,14 @@ import static org.testng.Assert.*;
 public class QuadrangleTypeCheckerImplTest {
     PointFactory pointFactory;
     QuadrangleFactory quadrangleFactory;
-    QuadrangleTypeChecker polygonTypeChecker;
+    QuadrangleTypeCheckerImpl polygonTypeChecker;
     List<CustomPoint> points;
 
     @BeforeClass
     public void init() {
         pointFactory = new PointFactory();
         quadrangleFactory = new QuadrangleFactory();
-        polygonTypeChecker = QuadrangleTypeCheckerImpl.getInstance();
+        polygonTypeChecker = new QuadrangleTypeCheckerImpl();
         points = new ArrayList<>(4);
     }
 
@@ -43,7 +43,7 @@ public class QuadrangleTypeCheckerImplTest {
 
         List<CustomPoint> input = List.of(point1, point2, point3, point4);
 
-        boolean actual = QuadrangleTypeCheckerImpl.getInstance().isQuadrangle(input);
+        boolean actual = polygonTypeChecker.isQuadrangle(input);
 
         assertTrue(actual);
     }
@@ -57,7 +57,7 @@ public class QuadrangleTypeCheckerImplTest {
 
         List<CustomPoint> input = List.of(point1, point2, point3, point4);
 
-        boolean actual = QuadrangleTypeCheckerImpl.getInstance().isQuadrangle(input);
+        boolean actual = polygonTypeChecker.isQuadrangle(input);
 
         assertFalse(actual);
     }
@@ -69,7 +69,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(10, 6));
         points.add(pointFactory.createPoint(8, 2));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isConvex(quadrangle);
 
@@ -83,7 +83,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(10, 6));
         points.add(pointFactory.createPoint(8, 2));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isConvex(quadrangle);
 
@@ -97,7 +97,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(10, 6));
         points.add(pointFactory.createPoint(4, 3));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isTrapezoid(quadrangle);
 
@@ -111,7 +111,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(10, 6));
         points.add(pointFactory.createPoint(1, 3));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isTrapezoid(quadrangle);
 
@@ -125,7 +125,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(6, 4));
         points.add(pointFactory.createPoint(3, 1));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isParallelogram(quadrangle);
 
@@ -139,7 +139,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(6, 4));
         points.add(pointFactory.createPoint(5, 1));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isParallelogram(quadrangle);
 
@@ -153,7 +153,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(-3, -4));
         points.add(pointFactory.createPoint(-6, -1));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isRectangle(quadrangle);
 
@@ -167,7 +167,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(-3, -4));
         points.add(pointFactory.createPoint(-6, -1));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isRectangle(quadrangle);
 
@@ -181,7 +181,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(0, -5));
         points.add(pointFactory.createPoint(-2, 0));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isRhombus(quadrangle);
 
@@ -195,7 +195,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(6, 4));
         points.add(pointFactory.createPoint(3, 1));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isRhombus(quadrangle);
 
@@ -209,7 +209,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(7, 0));
         points.add(pointFactory.createPoint(5, 5));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isSquare(quadrangle);
 
@@ -223,7 +223,7 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(0, -5));
         points.add(pointFactory.createPoint(-2, 0));
 
-        Quadrangle quadrangle = quadrangleFactory.createQuadrangle(points);
+        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isSquare(quadrangle);
 

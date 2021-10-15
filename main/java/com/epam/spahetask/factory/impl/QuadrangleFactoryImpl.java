@@ -4,6 +4,7 @@ import com.epam.spahetask.entity.CustomPoint;
 import com.epam.spahetask.entity.Quadrangle;
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.QuadrangleFactory;
+import com.epam.spahetask.observer.Impl.QuadrangleObserverImpl;
 import com.epam.spahetask.service.QuadrangleTypeChecker;
 import com.epam.spahetask.service.impl.QuadrangleTypeCheckerImpl;
 
@@ -25,6 +26,7 @@ public enum QuadrangleFactoryImpl implements QuadrangleFactory {
         }
 
         Quadrangle polygon = new Quadrangle();
+        polygon.attach(new QuadrangleObserverImpl());
         polygon.setPoints(points);
 
         return polygon;

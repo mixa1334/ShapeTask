@@ -1,6 +1,6 @@
 package com.epam.spahetask.observer;
 
-public interface QuadrangleObservable {
+public interface Observable {
     void attach(QuadrangleObserver observer);
 
     void detach(QuadrangleObserver observer);

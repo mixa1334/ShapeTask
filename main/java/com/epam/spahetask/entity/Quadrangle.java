@@ -5,21 +5,22 @@ import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
 import com.epam.spahetask.observer.Impl.QuadrangleEventImpl;
 import com.epam.spahetask.observer.QuadrangleEvent;
-import com.epam.spahetask.observer.QuadrangleObservable;
+import com.epam.spahetask.observer.Observable;
 import com.epam.spahetask.observer.QuadrangleObserver;
 import com.epam.spahetask.util.idgenerator.IdGenerator;
 import com.epam.spahetask.service.impl.QuadrangleTypeCheckerImpl;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class Quadrangle implements QuadrangleObservable {
-    private final List<QuadrangleObserver> observers;
+public class Quadrangle implements Observable {
+    private final Set<QuadrangleObserver> observers;
     private final long quadrangleId;
     private List<CustomPoint> customPoints;
 
     public Quadrangle() {
-        observers = new ArrayList<>(1);
+        observers = new HashSet<>(1);
         quadrangleId = IdGenerator.generateId();
         PointFactory factory = PointFactory.INSTANCE;
         CustomPoint point1 = factory.createPoint(1, 1);
@@ -41,6 +42,8 @@ public class Quadrangle implements QuadrangleObservable {
         }
 
         customPoints = PointFactory.INSTANCE.copyPoints(points);
+
+        notifyObservers();
     }
 
 

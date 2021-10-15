@@ -39,6 +39,6 @@ public class QuadrangleObserverImpl implements QuadrangleObserver {
         logger.log(Level.INFO, "new area ");
         QuadrangleParameter parameter = new QuadrangleParameter(newArea, newPerimeter);
 
-        return warehouse.update(quadrangle.getPolygonId(), parameter);
+        return warehouse.update(quadrangle.getQuadrangleId(), parameter);
     }
 }

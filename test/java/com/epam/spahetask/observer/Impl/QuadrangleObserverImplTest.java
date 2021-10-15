@@ -31,7 +31,7 @@ public class QuadrangleObserverImplTest {
 
         QuadrangleParameter parameter = new QuadrangleParameter(20, 18);
 
-        warehouse.put(quadrangle.getPolygonId(), parameter);
+        warehouse.put(quadrangle.getQuadrangleId(), parameter);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class QuadrangleObserverImplTest {
 
         quadrangle.setPoints(points);
 
-        QuadrangleParameter actual = warehouse.get(quadrangle.getPolygonId()).get();
+        QuadrangleParameter actual = warehouse.get(quadrangle.getQuadrangleId()).get();
 
         assertEquals(actual, expected);
     }

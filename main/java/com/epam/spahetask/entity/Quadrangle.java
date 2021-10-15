@@ -47,7 +47,7 @@ public class Quadrangle implements Observable {
     }
 
 
-    public long getPolygonId() {
+    public long getQuadrangleId() {
         return quadrangleId;
     }
 

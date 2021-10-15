@@ -94,6 +94,17 @@ public class QuadrangleCharacteristicCalculatorImpl implements QuadrangleCharact
         double size2 = customMath.calculateLineBtwTwoPoints(point2, point3);
         double size3 = customMath.calculateLineBtwTwoPoints(point3, point4);
         double size4 = customMath.calculateLineBtwTwoPoints(point4, point1);
+        logger.log(Level.DEBUG, "Quadrangle - " + quadrangle);
+        StringBuilder message = new StringBuilder();
+        message.append("line 1,2,3,4 - ")
+                .append(size1)
+                .append("\\")
+                .append(size2)
+                .append("\\")
+                .append(size3)
+                .append("\\")
+                .append(size4);
+        logger.log(Level.DEBUG, message);
         double result = size1 + size2 + size3 + size4;
 
         logger.log(Level.INFO, "perimeter - " + result);

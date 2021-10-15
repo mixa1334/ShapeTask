@@ -7,10 +7,14 @@ import com.epam.spahetask.service.QuadrangleCharacteristicCalculator;
 import com.epam.spahetask.service.impl.QuadrangleCharacteristicCalculatorImpl;
 import com.epam.spahetask.warehouse.QuadrangleParameter;
 import com.epam.spahetask.warehouse.Warehouse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 public class QuadrangleObserverImpl implements QuadrangleObserver {
+    final static Logger logger = LogManager.getLogger();
     private final Warehouse warehouse;
     private final QuadrangleCharacteristicCalculator calculator;
 
@@ -30,7 +34,10 @@ public class QuadrangleObserverImpl implements QuadrangleObserver {
             return false;
         }
 
-        QuadrangleParameter parameter = new QuadrangleParameter(area.get(), perimeter.get());
+        double newArea = area.get();
+        double newPerimeter = perimeter.get();
+        logger.log(Level.INFO, "new area ");
+        QuadrangleParameter parameter = new QuadrangleParameter(newArea, newPerimeter);
 
         return warehouse.update(quadrangle.getPolygonId(), parameter);
     }

@@ -3,18 +3,18 @@ package com.epam.spahetask.parser.impl;
 import com.epam.spahetask.entity.CustomPoint;
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
-import com.epam.spahetask.parser.PolygonParameterParser;
-import com.epam.spahetask.validator.PolygonParameterValidator;
+import com.epam.spahetask.parser.QuadrangleParameterParser;
+import com.epam.spahetask.validator.QuadrangleParameterValidator;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class QuadrangleParameterParserImpl implements PolygonParameterParser {
-    private PolygonParameterValidator validator;
+public class QuadrangleParameterParserImpl implements QuadrangleParameterParser {
+    private QuadrangleParameterValidator validator;
     public final String POINT_DELIMITER = "\\s+";
     public final String VALUE_DELIMITER = ",";
 
-    public QuadrangleParameterParserImpl(PolygonParameterValidator validator) {
+    public QuadrangleParameterParserImpl(QuadrangleParameterValidator validator) {
         this.validator = validator;
     }
 

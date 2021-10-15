@@ -1,10 +1,8 @@
 package com.epam.spahetask.service.impl;
 
 import com.epam.spahetask.entity.CustomPoint;
-import com.epam.spahetask.entity.polygon.Polygon;
-import com.epam.spahetask.entity.polygon.quadrangle.Quadrangle;
+import com.epam.spahetask.entity.Quadrangle;
 import com.epam.spahetask.service.CustomMath;
-import com.epam.spahetask.service.PolygonTypeChecker;
 import com.epam.spahetask.service.QuadrangleTypeChecker;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -12,9 +10,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker, PolygonTypeChecker {
+public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker {
     final static Logger logger = LogManager.getLogger();
-    private static QuadrangleTypeCheckerImpl instance = new QuadrangleTypeCheckerImpl();
+    private static final QuadrangleTypeCheckerImpl instance = new QuadrangleTypeCheckerImpl();
     private CustomPoint point1;
     private CustomPoint point2;
     private CustomPoint point3;
@@ -51,37 +49,22 @@ public class QuadrangleTypeCheckerImpl implements QuadrangleTypeChecker, Polygon
     }
 
     @Override
-    public boolean isConvex(Polygon quadrangle) {
+    public boolean isConvex(Quadrangle quadrangle) {
         List<CustomPoint> points = quadrangle.getAllPoints();
-
         point1 = points.get(0);
         point2 = points.get(1);
         point3 = points.get(2);
         point4 = points.get(3);
 
-        boolean sign = false;
-        boolean result = true;
-        int n = points.size();
-        int i = 0;
+        double angleB = customMath.calculateAngel(point1, point2, point3);
+        double angleC = customMath.calculateAngel(point2, point3, point4);
+        double angleD = customMath.calculateAngel(point3, point4, point1);
+        double angleA = customMath.calculateAngel(point4, point1, point2);
+        double sumOfAngles = angleA + angleB + angleC + angleD;
 
-        while (i < n) {
-            double dx1 = points.get((i + 2) % n).getX() - points.get((i + 1) % n).getX();
-            double dy1 = points.get((i + 2) % n).getY() - points.get((i + 1) % n).getY();
-            double dx2 = points.get(i).getX() - points.get((i + 1) % n).getX();
-            double dy2 = points.get(i).getY() - points.get((i + 1) % n).getY();
-            double angel = dx1 * dy2 - dy1 * dx2;
+        boolean result = sumOfAngles == 360;
 
-            if (i == 0) {
-                sign = angel > 0;
-            } else if (sign != (angel > 0)) {
-                logger.log(Level.INFO, quadrangle + " is not convex");
-                result = false;
-                break;
-            }
-            i++;
-        }
-
-        logger.log(Level.INFO, quadrangle + " is convex");
+        logger.log(Level.INFO, quadrangle + " is convex?:" + result + ", sum of angels - " + sumOfAngles);
         return result;
     }
 

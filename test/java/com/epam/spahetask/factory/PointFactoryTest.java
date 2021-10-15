@@ -9,7 +9,7 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 public class PointFactoryTest {
-    PointFactory factory = PointFactory.getInstance();
+    PointFactory factory = PointFactory.INSTANCE;
 
     @Test
     public void testCreatePoint() {

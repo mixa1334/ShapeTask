@@ -1,11 +1,10 @@
 package com.epam.spahetask.service.impl;
 
 import com.epam.spahetask.entity.CustomPoint;
-import com.epam.spahetask.entity.polygon.quadrangle.Quadrangle;
+import com.epam.spahetask.entity.Quadrangle;
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
-import com.epam.spahetask.factory.impl.QuadrangleFactory;
-import com.epam.spahetask.service.QuadrangleTypeChecker;
+import com.epam.spahetask.factory.impl.QuadrangleFactoryImpl;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,14 +16,14 @@ import static org.testng.Assert.*;
 
 public class QuadrangleTypeCheckerImplTest {
     PointFactory pointFactory;
-    QuadrangleFactory quadrangleFactory;
+    QuadrangleFactoryImpl quadrangleFactory;
     QuadrangleTypeCheckerImpl polygonTypeChecker;
     List<CustomPoint> points;
 
     @BeforeClass
     public void init() {
-        pointFactory = PointFactory.getInstance();
-        quadrangleFactory = QuadrangleFactory.getInstance();
+        pointFactory = PointFactory.INSTANCE;
+        quadrangleFactory = QuadrangleFactoryImpl.INSTANCE;
         polygonTypeChecker = QuadrangleTypeCheckerImpl.getInstance();
         points = new ArrayList<>(4);
     }
@@ -109,9 +108,9 @@ public class QuadrangleTypeCheckerImplTest {
         points.add(pointFactory.createPoint(2, 3));
         points.add(pointFactory.createPoint(6, 6));
         points.add(pointFactory.createPoint(10, 6));
-        points.add(pointFactory.createPoint(1, 3));
+        points.add(pointFactory.createPoint(1, 2));
 
-        Quadrangle quadrangle = (Quadrangle) quadrangleFactory.createPolygon(points);
+        Quadrangle quadrangle = quadrangleFactory.createPolygon(points);
 
         boolean actual = polygonTypeChecker.isTrapezoid(quadrangle);
 

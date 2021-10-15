@@ -1,4 +1,4 @@
-package com.epam.spahetask.idgenerator;
+package com.epam.spahetask.util.idgenerator;
 
 public class IdGenerator {
     private static long id = 0L;

@@ -1,19 +1,19 @@
 package com.epam.spahetask.validator.impl;
 
-import com.epam.spahetask.validator.PolygonParameterValidator;
+import com.epam.spahetask.validator.QuadrangleParameterValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public final class QuadrangleParameterValidator implements PolygonParameterValidator {
+public final class QuadrangleParameterValidatorImpl implements QuadrangleParameterValidator {
     final static Logger logger = LogManager.getLogger();
-    private static QuadrangleParameterValidator instance = new QuadrangleParameterValidator();
+    private static QuadrangleParameterValidatorImpl instance = new QuadrangleParameterValidatorImpl();
     public final String PARAMETERS_REGEX = "\\s*(-?\\d{1,5},-?\\d{1,5}\\s+){3}-?\\d{1,5},-?\\d{1,5}\\s*";
 
-    private QuadrangleParameterValidator() {
+    private QuadrangleParameterValidatorImpl() {
     }
 
-    public static QuadrangleParameterValidator getInstance() {
+    public static QuadrangleParameterValidatorImpl getInstance() {
         return instance;
     }
 

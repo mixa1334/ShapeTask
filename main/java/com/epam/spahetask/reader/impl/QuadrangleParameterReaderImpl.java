@@ -1,7 +1,7 @@
 package com.epam.spahetask.reader.impl;
 
 import com.epam.spahetask.exception.ShapeException;
-import com.epam.spahetask.reader.PolygonParameterReader;
+import com.epam.spahetask.reader.QuadrangleParameterReader;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class QuadrangleParameterReaderImpl implements PolygonParameterReader {
+public class QuadrangleParameterReaderImpl implements QuadrangleParameterReader {
     final static Logger logger = LogManager.getLogger();
 
     @Override

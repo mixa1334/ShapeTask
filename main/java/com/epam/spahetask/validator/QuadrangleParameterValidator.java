@@ -1,5 +1,5 @@
 package com.epam.spahetask.validator;
 
-public interface PolygonParameterValidator {
+public interface QuadrangleParameterValidator {
     boolean isValid(String parameters);
 }

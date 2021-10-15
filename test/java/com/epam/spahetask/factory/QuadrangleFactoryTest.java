@@ -1,10 +1,9 @@
 package com.epam.spahetask.factory;
 
 import com.epam.spahetask.entity.CustomPoint;
-import com.epam.spahetask.entity.polygon.Polygon;
-import com.epam.spahetask.entity.polygon.quadrangle.Quadrangle;
+import com.epam.spahetask.entity.Quadrangle;
 import com.epam.spahetask.exception.ShapeException;
-import com.epam.spahetask.factory.impl.QuadrangleFactory;
+import com.epam.spahetask.factory.impl.QuadrangleFactoryImpl;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -15,12 +14,12 @@ import static org.testng.Assert.*;
 
 public class QuadrangleFactoryTest {
     PointFactory pointFactory;
-    PolygonFactory quadrangleFactory;
+    QuadrangleFactory quadrangleFactory;
 
     @BeforeClass
     public void setUp() {
-        pointFactory = PointFactory.getInstance();
-        quadrangleFactory = QuadrangleFactory.getInstance();
+        pointFactory = PointFactory.INSTANCE;
+        quadrangleFactory = QuadrangleFactoryImpl.INSTANCE;
     }
 
     @Test
@@ -31,7 +30,7 @@ public class QuadrangleFactoryTest {
         pointList.add(pointFactory.createPoint(7, 5));
         pointList.add(pointFactory.createPoint(10, 1));
 
-        Polygon quadrangle = quadrangleFactory.createPolygon(pointList);
+        Quadrangle quadrangle = quadrangleFactory.createPolygon(pointList);
 
         assertEquals(quadrangle.getAllPoints(), pointList);
     }
@@ -42,7 +41,7 @@ public class QuadrangleFactoryTest {
         pointList.add(pointFactory.createPoint(4, 1));
         pointList.add(pointFactory.createPoint(5, 4));
 
-        Polygon quadrangle = quadrangleFactory.createPolygon(pointList);
+        Quadrangle quadrangle = quadrangleFactory.createPolygon(pointList);
 
     }
 
@@ -54,8 +53,8 @@ public class QuadrangleFactoryTest {
         pointList.add(pointFactory.createPoint(7, 5));
         pointList.add(pointFactory.createPoint(10, 1));
 
-        Polygon expected = quadrangleFactory.createPolygon(pointList);
-        Polygon actual = quadrangleFactory.createPolygon(expected);
+        Quadrangle expected = quadrangleFactory.createPolygon(pointList);
+        Quadrangle actual = quadrangleFactory.createPolygon(expected);
 
         assertNotEquals(actual, expected);
     }

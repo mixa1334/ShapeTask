@@ -5,6 +5,6 @@ import com.epam.spahetask.exception.ShapeException;
 
 import java.util.List;
 
-public interface PolygonParameterParser {
+public interface QuadrangleParameterParser {
     List<CustomPoint> parseParameters(String parameterString) throws ShapeException;
 }

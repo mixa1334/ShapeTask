@@ -1,4 +1,4 @@
-package com.epam.spahetask.idgenerator;
+package com.epam.spahetask.util.idgenerator;
 
 import org.testng.annotations.Test;
 

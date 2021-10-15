@@ -1,19 +1,25 @@
-package com.epam.spahetask.entity.polygon.quadrangle;
+package com.epam.spahetask.entity;
 
-import com.epam.spahetask.entity.CustomPoint;
-import com.epam.spahetask.entity.polygon.Polygon;
+
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
-import com.epam.spahetask.idgenerator.IdGenerator;
+import com.epam.spahetask.observer.Impl.QuadrangleEventImpl;
+import com.epam.spahetask.observer.QuadrangleEvent;
+import com.epam.spahetask.observer.QuadrangleObservable;
+import com.epam.spahetask.observer.QuadrangleObserver;
+import com.epam.spahetask.util.idgenerator.IdGenerator;
 import com.epam.spahetask.service.impl.QuadrangleTypeCheckerImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Quadrangle extends Polygon {
-    private List<CustomPoint> customPoints;
+public class Quadrangle implements QuadrangleObservable {
+    private final List<QuadrangleObserver> observers;
     private final long quadrangleId;
+    private List<CustomPoint> customPoints;
 
     public Quadrangle() {
+        observers = new ArrayList<>(1);
         quadrangleId = IdGenerator.generateId();
         PointFactory factory = PointFactory.INSTANCE;
         CustomPoint point1 = factory.createPoint(1, 1);
@@ -23,12 +29,12 @@ public class Quadrangle extends Polygon {
         customPoints = List.of(point1, point2, point3, point4);
     }
 
-    @Override
+
     public List<CustomPoint> getAllPoints() {
         return PointFactory.INSTANCE.copyPoints(customPoints);
     }
 
-    @Override
+
     public void setPoints(List<CustomPoint> points) throws ShapeException {
         if (!QuadrangleTypeCheckerImpl.getInstance().isQuadrangle(points)) {
             throw new ShapeException("invalid data - " + points);
@@ -37,9 +43,27 @@ public class Quadrangle extends Polygon {
         customPoints = PointFactory.INSTANCE.copyPoints(points);
     }
 
-    @Override
+
     public long getPolygonId() {
         return quadrangleId;
+    }
+
+    @Override
+    public void attach(QuadrangleObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void detach(QuadrangleObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (QuadrangleObserver observer : observers) {
+            QuadrangleEvent e = new QuadrangleEventImpl(this);
+            observer.update(e);
+        }
     }
 
     @Override

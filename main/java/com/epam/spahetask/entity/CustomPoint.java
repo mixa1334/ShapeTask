@@ -1,6 +1,6 @@
 package com.epam.spahetask.entity;
 
-public class CustomPoint {
+public class CustomPoint implements Cloneable {
     private int x;
     private int y;
 

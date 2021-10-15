@@ -1,17 +1,17 @@
 package com.epam.spahetask.validator;
 
-import com.epam.spahetask.validator.impl.QuadrangleParameterValidator;
+import com.epam.spahetask.validator.impl.QuadrangleParameterValidatorImpl;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
 public class QuadrangleParameterValidatorTest {
-    QuadrangleParameterValidator validator;
+    QuadrangleParameterValidatorImpl validator;
 
     @BeforeClass
     public void setUp() {
-        validator = QuadrangleParameterValidator.getInstance();
+        validator = QuadrangleParameterValidatorImpl.getInstance();
     }
 
     @Test

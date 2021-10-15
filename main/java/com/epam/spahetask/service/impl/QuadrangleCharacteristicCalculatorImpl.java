@@ -1,10 +1,10 @@
 package com.epam.spahetask.service.impl;
 
 import com.epam.spahetask.entity.CustomPoint;
-import com.epam.spahetask.entity.polygon.Polygon;
+import com.epam.spahetask.entity.Quadrangle;
 import com.epam.spahetask.service.CustomMath;
-import com.epam.spahetask.service.PolygonCharacteristicCalculator;
-import com.epam.spahetask.service.PolygonTypeChecker;
+import com.epam.spahetask.service.QuadrangleCharacteristicCalculator;
+import com.epam.spahetask.service.QuadrangleTypeChecker;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,22 +13,27 @@ import java.util.List;
 import java.util.Optional;
 
 //todo refactoring
-public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristicCalculator {
+public class QuadrangleCharacteristicCalculatorImpl implements QuadrangleCharacteristicCalculator {
     final static Logger logger = LogManager.getLogger();
-    private final PolygonTypeChecker checker;
+    private final static QuadrangleCharacteristicCalculatorImpl instance = new QuadrangleCharacteristicCalculatorImpl();
+    private final QuadrangleTypeChecker checker = QuadrangleTypeCheckerImpl.getInstance();
+    private final CustomMath customMath = CustomMath.INSTANCE;
 
-    public PolygonCharacteristicCalculatorImpl(PolygonTypeChecker checker) {
-        this.checker = checker;
+    private QuadrangleCharacteristicCalculatorImpl() {
+    }
+
+    public static QuadrangleCharacteristicCalculatorImpl getInstance() {
+        return instance;
     }
 
     @Override
-    public Optional<Double> calculateArea(Polygon polygon) {
-        if (!checker.isConvex(polygon)) {
+    public Optional<Double> calculateArea(Quadrangle quadrangle) {
+        if (!checker.isConvex(quadrangle)) {
             logger.log(Level.INFO, "it is not convex polygon!");
             return Optional.empty();
         }
 
-        List<CustomPoint> pointList = polygon.getAllPoints();
+        List<CustomPoint> pointList = quadrangle.getAllPoints();
 
         double result = Math.abs(calculatePartOfArea(pointList, 1) - calculatePartOfArea(pointList, 2));
         result /= 2;
@@ -72,28 +77,24 @@ public class PolygonCharacteristicCalculatorImpl implements PolygonCharacteristi
     }
 
     @Override
-    public Optional<Double> calculatePerimeter(Polygon polygon) {
-        if (!checker.isConvex(polygon)) {
+    public Optional<Double> calculatePerimeter(Quadrangle quadrangle) {
+        if (!checker.isConvex(quadrangle)) {
             logger.log(Level.INFO, "it is not convex polygon!");
             return Optional.empty();
         }
 
-        List<CustomPoint> pointList = polygon.getAllPoints();
+        List<CustomPoint> pointList = quadrangle.getAllPoints();
 
-        CustomPoint pointOne;
-        CustomPoint pointTwo;
+        CustomPoint point1 = pointList.get(0);
+        CustomPoint point2 = pointList.get(1);
+        CustomPoint point3 = pointList.get(2);
+        CustomPoint point4 = pointList.get(3);
 
-        double result = 0;
-        int n = pointList.size() - 1;
-
-        for (int i = 0; i < n; i++) {
-            pointOne = pointList.get(i);
-            pointTwo = pointList.get(i + 1);
-            result += CustomMath.INSTANCE.calculateLineBtwTwoPoints(pointOne, pointTwo);
-        }
-        pointOne = pointList.get(n);
-        pointTwo = pointList.get(0);
-        result += CustomMath.INSTANCE.calculateLineBtwTwoPoints(pointOne, pointTwo);
+        double size1 = customMath.calculateLineBtwTwoPoints(point1, point2);
+        double size2 = customMath.calculateLineBtwTwoPoints(point2, point3);
+        double size3 = customMath.calculateLineBtwTwoPoints(point3, point4);
+        double size4 = customMath.calculateLineBtwTwoPoints(point4, point1);
+        double result = size1 + size2 + size3 + size4;
 
         logger.log(Level.INFO, "perimeter - " + result);
 

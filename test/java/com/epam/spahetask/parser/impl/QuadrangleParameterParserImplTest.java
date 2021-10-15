@@ -3,8 +3,8 @@ package com.epam.spahetask.parser.impl;
 import com.epam.spahetask.entity.CustomPoint;
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
-import com.epam.spahetask.parser.PolygonParameterParser;
-import com.epam.spahetask.validator.impl.QuadrangleParameterValidator;
+import com.epam.spahetask.parser.QuadrangleParameterParser;
+import com.epam.spahetask.validator.impl.QuadrangleParameterValidatorImpl;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -14,12 +14,12 @@ import static org.testng.Assert.*;
 
 public class QuadrangleParameterParserImplTest {
     PointFactory factory;
-    PolygonParameterParser parser;
+    QuadrangleParameterParser parser;
 
     @BeforeClass
     public void setUp() {
-        factory = PointFactory.getInstance();
-        parser = new QuadrangleParameterParserImpl(QuadrangleParameterValidator.getInstance());
+        factory = PointFactory.INSTANCE;
+        parser = new QuadrangleParameterParserImpl(QuadrangleParameterValidatorImpl.getInstance());
     }
 
     @Test

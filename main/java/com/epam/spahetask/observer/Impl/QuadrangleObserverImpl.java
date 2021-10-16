@@ -26,6 +26,11 @@ public class QuadrangleObserverImpl implements QuadrangleObserver {
     @Override
     public boolean update(QuadrangleEvent event) {
         Quadrangle quadrangle = event.getSource();
+        long quadrangleId = quadrangle.getQuadrangleId();
+
+        if (!warehouse.containsKey(quadrangleId)) {
+            return false;
+        }
 
         Optional<Double> area = calculator.calculateArea(quadrangle);
         Optional<Double> perimeter = calculator.calculatePerimeter(quadrangle);
@@ -39,6 +44,6 @@ public class QuadrangleObserverImpl implements QuadrangleObserver {
         logger.log(Level.INFO, "new area ");
         QuadrangleParameter parameter = new QuadrangleParameter(newArea, newPerimeter);
 
-        return warehouse.update(quadrangle.getQuadrangleId(), parameter);
+        return warehouse.update(quadrangleId, parameter);
     }
 }

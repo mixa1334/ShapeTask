@@ -5,6 +5,7 @@ import com.epam.spahetask.repository.QuadrangleRepository;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class QuadrangleRepositoryImpl implements QuadrangleRepository {
     private final static QuadrangleRepositoryImpl instance = new QuadrangleRepositoryImpl();
@@ -67,11 +68,11 @@ public class QuadrangleRepositoryImpl implements QuadrangleRepository {
 
     @Override
     public Collection<Quadrangle> sort(Comparator<? super Quadrangle> comparator) {
-        return quadrangleSet.stream().sorted(comparator).toList();
+        return quadrangleSet.stream().sorted(comparator).collect(Collectors.toList());
     }
 
     @Override
     public Collection<Quadrangle> query(Predicate<? super Quadrangle> predicate) {
-        return quadrangleSet.stream().filter(predicate).toList();
+        return quadrangleSet.stream().filter(predicate).collect(Collectors.toList());
     }
 }

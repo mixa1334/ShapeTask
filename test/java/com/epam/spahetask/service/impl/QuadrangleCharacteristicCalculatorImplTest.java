@@ -31,7 +31,7 @@ public class QuadrangleCharacteristicCalculatorImplTest {
         points.add(pointFactory.createPoint(-1, 3));
         points.add(pointFactory.createPoint(1, 5));
 
-        quadrangle = (Quadrangle) polygonFactory.createPolygon(points);
+        quadrangle = polygonFactory.createPolygon(points);
     }
 
     @Test

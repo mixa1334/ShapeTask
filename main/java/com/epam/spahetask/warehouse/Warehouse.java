@@ -46,4 +46,8 @@ public class Warehouse {
     public void clear() {
         quadrangles.clear();
     }
+
+    public boolean containsKey(long quadrangleId) {
+        return quadrangles.containsKey(quadrangleId);
+    }
 }

@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.testng.Assert.*;
 
@@ -68,7 +69,7 @@ public class QuadrangleRepositoryImplTest {
     @Test
     public void testSort() {
         List<Quadrangle> expected = List.of(square, rectangle, quadrangle);
-        List<Quadrangle> actual = quadrangleRepository.sort(new IdComparator()).stream().toList();
+        List<Quadrangle> actual = quadrangleRepository.sort(new IdComparator()).stream().collect(Collectors.toList());
 
         assertEquals(actual, expected);
     }

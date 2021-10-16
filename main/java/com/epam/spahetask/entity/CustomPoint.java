@@ -21,21 +21,27 @@ public class CustomPoint implements Cloneable {
     }
 
     @Override
-    public int hashCode() {
-        return Integer.hashCode(x) + Integer.hashCode(y);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (obj == null || obj.getClass() != this.getClass()) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        CustomPoint point = (CustomPoint) obj;
-        return point.x == this.x && point.y == this.y;
+        CustomPoint point = (CustomPoint) o;
+
+        if (x != point.x) {
+            return false;
+        }
+        return y == point.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
     }
 
     @Override

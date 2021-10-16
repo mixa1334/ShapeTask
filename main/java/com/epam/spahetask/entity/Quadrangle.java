@@ -1,6 +1,5 @@
 package com.epam.spahetask.entity;
 
-
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
 import com.epam.spahetask.observer.Impl.QuadrangleEventImpl;
@@ -70,21 +69,27 @@ public class Quadrangle implements Observable {
     }
 
     @Override
-    public int hashCode() {
-        return Long.hashCode(quadrangleId) + customPoints.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (obj == null || obj.getClass() != this.getClass()) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        Quadrangle quadrangle = (Quadrangle) obj;
-        return quadrangle.quadrangleId == this.quadrangleId && quadrangle.customPoints == this.customPoints;
+        Quadrangle that = (Quadrangle) o;
+
+        if (quadrangleId != that.quadrangleId) {
+            return false;
+        }
+        return customPoints != null ? customPoints.equals(that.customPoints) : that.customPoints == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (quadrangleId ^ (quadrangleId >>> 32));
+        result = 31 * result + (customPoints != null ? customPoints.hashCode() : 0);
+        return result;
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class QuadrangleParameterParserImpl implements QuadrangleParameterParser {
-    private QuadrangleParameterValidator validator;
+    private final QuadrangleParameterValidator validator;
     public final String POINT_DELIMITER = "\\s+";
     public final String VALUE_DELIMITER = ",";
 

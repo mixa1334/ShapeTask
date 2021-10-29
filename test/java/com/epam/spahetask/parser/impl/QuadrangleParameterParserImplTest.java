@@ -4,7 +4,6 @@ import com.epam.spahetask.entity.CustomPoint;
 import com.epam.spahetask.exception.ShapeException;
 import com.epam.spahetask.factory.PointFactory;
 import com.epam.spahetask.parser.QuadrangleParameterParser;
-import com.epam.spahetask.validator.impl.QuadrangleParameterValidatorImpl;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -19,7 +18,7 @@ public class QuadrangleParameterParserImplTest {
     @BeforeClass
     public void setUp() {
         factory = PointFactory.INSTANCE;
-        parser = new QuadrangleParameterParserImpl(QuadrangleParameterValidatorImpl.getInstance());
+        parser = new QuadrangleParameterParserImpl();
     }
 
     @Test

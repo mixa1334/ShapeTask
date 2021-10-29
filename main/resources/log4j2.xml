@@ -31,7 +31,7 @@
     </Appenders>
     <Loggers>
         <Root level="debug">
-            <!--<AppenderRef ref="FileZip"/>-->
+            <AppenderRef ref="FileZip"/>-->
             <AppenderRef ref="Console" level="trace"/>
         </Root>
     </Loggers>
